@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Virología · ISFA 6to Año</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #f5f0ea;
+  --bg2:       #ede8e0;
+  --surface:   #faf7f3;
+  --surface2:  #f0ebe2;
+  --border:    #ddd6cc;
+  --border2:   #ccc4b8;
+
+  --ink:       #2a2420;
+  --ink2:      #6b5f55;
+  --ink3:      #9e9088;
+
+  --teal:      #1a7a5e;
+  --teal-l:    #2aab84;
+  --teal-bg:   #e8f4f0;
+
+  --rust:      #9b3a1f;
+  --rust-l:    #c85030;
+  --rust-bg:   #f5ede9;
+
+  --sage:      #4a6741;
+  --sage-l:    #6a9460;
+  --sage-bg:   #edf2eb;
+
+  --amber:     #8a5a12;
+  --amber-l:   #c07f20;
+  --amber-bg:  #f5ede0;
+
+  --plum:      #5c3368;
+  --plum-l:    #8a4fa0;
+  --plum-bg:   #f0eaf4;
+
+  --slate:     #3a4a5a;
+  --slate-l:   #5a7080;
+
+  --mono: 'DM Mono', monospace;
+  --serif: 'Lora', serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ───────────────────────────────────────────────────────── */
+.site-header {
+  background: var(--ink);
+  padding: 2.4rem 1.5rem 2.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rust-l), var(--amber-l), var(--teal-l));
+}
+
+.header-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 0.6rem;
+}
+
+.header-title {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.12;
+  color: #f5f0ea;
+  margin-bottom: 0.45rem;
+}
+
+.header-title em { color: var(--amber-l); font-style: italic; }
+
+.header-sub {
+  font-size: 0.84rem;
+  color: var(--ink3);
+  font-weight: 300;
+}
+
+/* ── NAV ──────────────────────────────────────────────────────────── */
+.nav-tabs {
+  display: flex;
+  overflow-x: auto;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(42,36,32,0.07);
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  flex: 0 0 auto;
+  padding: 0.85rem 1.05rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.18s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.nav-tab.active {
+  color: var(--rust);
+  border-bottom-color: var(--rust);
+  background: var(--rust-bg);
+}
+
+/* ── SECTIONS ─────────────────────────────────────────────────────── */
+.section {
+  display: none;
+  padding: 1.8rem 1.5rem 4rem;
+  animation: fadeUp 0.28s ease;
+  min-height: 80vh;
+}
+.section.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 0.35rem;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.section-intro {
+  font-size: 0.88rem;
+  color: var(--ink2);
+  margin-bottom: 1.8rem;
+  line-height: 1.55;
+}
+
+/* ── CARDS ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 0.85rem;
+}
+
+.label-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 0.3rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SECCIÓN 1 — AGENTES DERIVADOS
+══════════════════════════════════════════════════════════════════ */
+.agents-grid { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.agent-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.agent-card:active { box-shadow: 0 4px 16px rgba(42,36,32,0.12); }
+
+.agent-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: var(--bg2);
+  overflow: hidden;
+}
+
+.agent-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.agent-img-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(42,36,32,0.72);
+  color: rgba(245,240,234,0.85);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.6rem;
+  line-height: 1.3;
+}
+
+.agent-body { padding: 1rem 1.1rem 1.1rem; }
+
+.agent-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.agent-badge {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.agent-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.agent-desc {
+  font-size: 0.87rem;
+  color: var(--ink2);
+  line-height: 1.55;
+  margin-bottom: 0.7rem;
+}
+
+.agent-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 20px;
+  border: 1px solid;
+}
+
+.agent-key {
+  background: var(--bg2);
+  border-left: 3px solid;
+  border-radius: 0 6px 6px 0;
+  padding: 0.55rem 0.8rem;
+  margin-top: 0.7rem;
+  font-size: 0.83rem;
+  color: var(--ink2);
+  line-height: 1.45;
+}
+.agent-key strong { color: var(--ink); }
+
+/* collapse toggle */
+.agent-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: var(--ink3);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.6rem 0;
+  margin-top: 0.2rem;
+}
+
+.agent-extra { display: none; margin-top: 0.5rem; }
+.agent-extra.open { display: block; animation: fadeUp 0.2s ease; }
+
+/* ══════════════════════════════════════════════════════════════════
+   SECCIÓN 2 — ESTRUCTURA (diagrama)
+══════════════════════════════════════════════════════════════════ */
+.virus-diagram-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.virus-svg-container {
+  width: 100%;
+  max-width: 320px;
+}
+.virus-svg-container svg { width: 100%; height: auto; display: block; }
+
+.v-part { cursor: pointer; transition: opacity 0.15s; }
+.v-part:hover { opacity: 0.85; }
+
+.part-card {
+  width: 100%;
+  max-width: 320px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  min-height: 110px;
+  transition: border-color 0.2s;
+}
+
+.part-hint {
+  font-size: 0.85rem;
+  color: var(--ink3);
+  text-align: center;
+  padding-top: 1rem;
+  font-style: italic;
+}
+
+.part-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.part-sub {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--ink3);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.part-desc {
+  font-size: 0.86rem;
+  color: var(--ink2);
+  line-height: 1.52;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SECCIÓN 3 — CICLOS
+══════════════════════════════════════════════════════════════════ */
+.cycle-toggle {
+  display: flex;
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.cycle-btn {
+  flex: 1;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  cursor: pointer;
+  transition: all 0.18s;
+  border: none;
+  background: transparent;
+}
+
+.cycle-btn.active-litico { background: var(--rust); color: #fff; }
+.cycle-btn.active-liso   { background: var(--teal); color: #fff; }
+
+.cycle-steps { display: flex; flex-direction: column; gap: 0; }
+
+.step {
+  display: flex;
+  gap: 0;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+.step.visible { opacity: 1; transform: translateX(0); }
+
+.step-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 34px;
+  flex-shrink: 0;
+}
+
+.step-dot {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  z-index: 1;
+  margin-top: 4px;
+}
+
+.step-connector { width: 1.5px; flex: 1; min-height: 16px; margin: 3px 0; }
+
+.step-content { padding: 0.2rem 0 1.1rem 0.8rem; flex: 1; }
+
+.step-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.step-body { font-size: 0.85rem; color: var(--ink2); line-height: 1.5; }
+
+.step-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  padding: 0.12rem 0.4rem;
+  border-radius: 3px;
+  margin-top: 0.3rem;
+  letter-spacing: 0.04em;
+  border: 1px solid;
+}
+
+.litico .step-dot { background: var(--rust-bg); color: var(--rust); border: 1.5px solid var(--rust); }
+.litico .step-connector { background: linear-gradient(var(--rust), rgba(155,58,31,0.15)); }
+.litico .step-title { color: var(--rust); }
+
+.lisogenico .step-dot { background: var(--teal-bg); color: var(--teal); border: 1.5px solid var(--teal); }
+.lisogenico .step-connector { background: linear-gradient(var(--teal), rgba(26,122,94,0.15)); }
+.lisogenico .step-title { color: var(--teal); }
+
+.key-fact {
+  background: var(--amber-bg);
+  border: 1px solid #e0c080;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--ink2);
+  line-height: 1.55;
+}
+.key-fact strong { color: var(--amber); }
+
+/* ══════════════════════════════════════════════════════════════════
+   SECCIÓN 4 — COMPARACIÓN
+══════════════════════════════════════════════════════════════════ */
+.compare-entities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.entity-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  text-align: center;
+}
+
+.entity-icon { font-size: 1.8rem; margin-bottom: 0.3rem; display: block; }
+
+.entity-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.entity-size {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--ink3);
+  letter-spacing: 0.04em;
+}
+
+/* barras */
+.size-section { margin-bottom: 1rem; }
+.size-label { font-family: var(--mono); font-size: 0.62rem; color: var(--ink3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.size-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.size-name { font-family: var(--mono); font-size: 0.62rem; color: var(--ink2); width: 55px; flex-shrink: 0; }
+.size-track { flex: 1; height: 7px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.size-fill { height: 100%; border-radius: 4px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
+.size-val { font-family: var(--mono); font-size: 0.6rem; color: var(--ink3); width: 65px; text-align: right; flex-shrink: 0; }
+
+/* tabla */
+.compare-table { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.cmp-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cmp-trait {
+  background: var(--bg2);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border-bottom: 1px solid var(--border);
+}
+
+.cmp-cells { display: grid; grid-template-columns: 1fr 1fr; }
+
+.cmp-cell {
+  padding: 0.6rem 0.9rem;
+  font-size: 0.83rem;
+  color: var(--ink2);
+  line-height: 1.4;
+  border-right: 1px solid var(--border);
+}
+.cmp-cell:last-child { border-right: none; }
+.hi { color: var(--ink); font-weight: 600; }
+.bad { color: var(--rust); font-weight: 600; }
+.good { color: var(--teal); font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════════════
+   SECCIÓN 5 — QUIZ
+══════════════════════════════════════════════════════════════════ */
+.quiz-progress { display: flex; gap: 4px; margin-bottom: 1.3rem; }
+
+.prog-dot {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: var(--bg2);
+  transition: background 0.3s;
+}
+.prog-dot.done    { background: var(--teal); }
+.prog-dot.current { background: var(--rust); }
+.prog-dot.wrong   { background: var(--rust-l); opacity: 0.5; }
+
+.quiz-count {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink3);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-ctx {
+  background: var(--plum-bg);
+  border-left: 3px solid var(--plum-l);
+  padding: 0.65rem 0.9rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.84rem;
+  color: var(--ink2);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+  display: none;
+}
+
+.quiz-q {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.45;
+  margin-bottom: 1.1rem;
+  color: var(--ink);
+  min-height: 2.5rem;
+}
+
+.quiz-opts { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1rem; }
+
+.quiz-opt {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  line-height: 1.45;
+  user-select: none;
+  color: var(--ink);
+}
+.quiz-opt:active { transform: scale(0.99); }
+
+.quiz-opt.correct { background: var(--teal-bg); border-color: var(--teal); color: var(--teal); }
+.quiz-opt.wrong-sel { background: var(--rust-bg); border-color: var(--rust); color: var(--rust); }
+.quiz-opt.reveal  { background: var(--teal-bg); border-color: rgba(26,122,94,0.4); color: var(--teal); }
+.quiz-opt.disabled { cursor: default; }
+
+.opt-letter {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--ink3);
+}
+
+.quiz-fb {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink2);
+  display: none;
+  margin-bottom: 0.9rem;
+  border-left: 3px solid var(--teal);
+}
+.quiz-fb.wrong-fb { border-left-color: var(--rust); }
+.quiz-fb.show { display: block; animation: fadeUp 0.22s ease; }
+.quiz-fb strong { color: var(--ink); }
+
+.btn-next {
+  width: 100%;
+  padding: 0.82rem;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s;
+  display: none;
+}
+.btn-next.show { display: block; }
+.btn-next:active { background: var(--slate); }
+
+.quiz-result {
+  text-align: center;
+  padding: 1.5rem 0;
+  display: none;
+  animation: fadeUp 0.35s ease;
+}
+.quiz-result.show { display: block; }
+
+.result-score {
+  font-family: var(--serif);
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.result-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 0.9rem;
+}
+
+.result-msg {
+  font-size: 0.9rem;
+  color: var(--ink2);
+  margin-bottom: 1.4rem;
+  line-height: 1.55;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-restart {
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--rust);
+  border: 1.5px solid var(--rust);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-restart:active { background: var(--rust-bg); }
+
+/* ── FOOTER ───────────────────────────────────────────────────────── */
+.site-footer {
+  padding: 1.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--ink3);
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <p class="header-eyebrow">ISFA · Procesos Microbiológicos · 6to Año</p>
+  <h1 class="header-title"><em>Virología</em><br>interactiva</h1>
+  <p class="header-sub">Prof. Agustina Rodríguez · Explorá cada sección</p>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <div class="nav-tab active" data-tab="agentes">Agentes</div>
+  <div class="nav-tab" data-tab="estructura">Estructura</div>
+  <div class="nav-tab" data-tab="ciclos">Ciclos</div>
+  <div class="nav-tab" data-tab="comparacion">Comparación</div>
+  <div class="nav-tab" data-tab="quiz">Quiz</div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SECCIÓN 1 — AGENTES DERIVADOS DE VIRUS
+══════════════════════════════════════════════════════════════════ -->
+<section class="section active" id="sec-agentes">
+  <p class="section-eyebrow">Clasificación</p>
+  <h2 class="section-title">Agentes subvirales y relacionados</h2>
+  <p class="section-intro">No todos los agentes infecciosos son virus clásicos. Conocé los tipos y sus diferencias.</p>
+
+  <div class="agents-grid">
+
+    <!-- VIRUS COMPLETO -->
+    <div class="agent-card">
+      <div class="agent-img-wrap" style="background:#1a0f08;display:flex;align-items:center;justify-content:center;flex-direction:column">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:300px">
+          <defs>
+            <radialGradient id="cg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8B4513"/><stop offset="100%" stop-color="#4a1a04"/></radialGradient>
+            <radialGradient id="cg2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c85030" stop-opacity="0.5"/><stop offset="100%" stop-color="#8B2500" stop-opacity="0.2"/></radialGradient>
+          </defs>
+          <!-- envoltura -->
+          <circle cx="160" cy="90" r="62" fill="url(#cg1)" stroke="#c85030" stroke-width="1.5"/>
+          <!-- ARN interno -->
+          <circle cx="160" cy="90" r="38" fill="rgba(180,80,20,0.3)" stroke="#e0803030" stroke-width="1"/>
+          <path d="M145,80 Q155,90 145,100 M155,75 Q165,90 155,105" stroke="#f0c060" stroke-width="1.2" fill="none" opacity="0.7"/>
+          <!-- spikes (proteína S) -->
+          <g stroke="#e07040" stroke-width="1.8" stroke-linecap="round">
+            <line x1="160" y1="28" x2="160" y2="16"/><ellipse cx="160" cy="13" rx="5" ry="7" fill="#c85030"/>
+            <line x1="196" y1="44" x2="204" y2="34"/><ellipse cx="207" cy="31" rx="5" ry="7" fill="#c85030" transform="rotate(30,207,31)"/>
+            <line x1="218" y1="78" x2="228" y2="72"/><ellipse cx="232" cy="69" rx="5" ry="7" fill="#c85030" transform="rotate(60,232,69)"/>
+            <line x1="222" y1="115" x2="232" y2="120"/><ellipse cx="236" cy="124" rx="5" ry="7" fill="#c85030" transform="rotate(100,236,124)"/>
+            <line x1="196" y1="140" x2="202" y2="150"/><ellipse cx="205" cy="154" rx="5" ry="7" fill="#c85030" transform="rotate(130,205,154)"/>
+            <line x1="160" y1="152" x2="160" y2="164"/><ellipse cx="160" cy="167" rx="5" ry="7" fill="#c85030"/>
+            <line x1="124" y1="140" x2="118" y2="150"/><ellipse cx="115" cy="154" rx="5" ry="7" fill="#c85030" transform="rotate(-130,115,154)"/>
+            <line x1="98" y1="115" x2="88" y2="120"/><ellipse cx="84" cy="124" rx="5" ry="7" fill="#c85030" transform="rotate(-100,84,124)"/>
+            <line x1="102" y1="78" x2="92" y2="72"/><ellipse cx="88" cy="69" rx="5" ry="7" fill="#c85030" transform="rotate(-60,88,69)"/>
+            <line x1="124" y1="44" x2="116" y2="34"/><ellipse cx="113" cy="31" rx="5" ry="7" fill="#c85030" transform="rotate(-30,113,31)"/>
+          </g>
+          <!-- proteína E/M (pequeños puntos en membrana) -->
+          <g fill="#e09060" opacity="0.6">
+            <circle cx="170" cy="28" r="2.5"/><circle cx="148" cy="31" r="2.5"/><circle cx="210" cy="58" r="2.5"/>
+            <circle cx="220" cy="100" r="2.5"/><circle cx="210" cy="128" r="2.5"/><circle cx="148" cy="149" r="2.5"/>
+            <circle cx="110" cy="128" r="2.5"/><circle cx="100" cy="100" r="2.5"/><circle cx="110" cy="58" r="2.5"/>
+          </g>
+          <!-- etiqueta -->
+          <text x="160" y="175" font-family="DM Mono,monospace" font-size="9" fill="#e07040" text-anchor="middle" opacity="0.9">SARS-CoV-2 · Virus ARN con envoltura · ~100 nm</text>
+        </svg>
+        <div class="agent-img-caption" style="position:static;background:rgba(30,10,0,0.5);color:#d0a080;padding:0.3rem 0.6rem;font-size:0.6rem">Ilustración científica · Coronaviridae · Betacoronavirus</div>
+      </div>
+      <div class="agent-body">
+        <div class="agent-header">
+          <span class="agent-badge" style="background:var(--rust-bg);color:var(--rust);border:1px solid var(--rust)">Virus completo</span>
+          <p class="agent-name">Virus clásico</p>
+        </div>
+        <p class="agent-desc">Partícula con material genético (ADN o ARN), cápside proteica y —en muchos casos— envoltura lipídica. Es el tipo más estudiado y el más relevante en industria. Solo se replica dentro de una célula huésped.</p>
+        <div class="agent-pills">
+          <span class="pill" style="color:var(--rust);border-color:var(--rust)">ADN o ARN</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Cápside</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">± Envoltura</span>
+        </div>
+        <div class="agent-key" style="border-color:var(--rust)">
+          <strong>Ejemplos industriales:</strong> Bacteriófagos (contaminan fermentaciones), Norovirus (alimentos), Influenza (riesgo en personal de planta).
+        </div>
+      </div>
+    </div>
+
+    <!-- BACTERIÓFAGO -->
+    <div class="agent-card">
+      <div class="agent-img-wrap" style="background:#0a0f14;display:flex;align-items:center;justify-content:center;flex-direction:column">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:300px">
+          <defs>
+            <linearGradient id="fg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4a7090"/><stop offset="100%" stop-color="#1a3050"/></linearGradient>
+          </defs>
+          <!-- cola (sheath contráctil) -->
+          <rect x="142" y="110" width="36" height="38" rx="4" fill="#2a5070" stroke="#4a90b0" stroke-width="1.2"/>
+          <!-- líneas de cola -->
+          <g stroke="#6ab0d0" stroke-width="0.7" opacity="0.5">
+            <line x1="142" y1="118" x2="178" y2="118"/>
+            <line x1="142" y1="126" x2="178" y2="126"/>
+            <line x1="142" y1="134" x2="178" y2="134"/>
+            <line x1="142" y1="142" x2="178" y2="142"/>
+          </g>
+          <!-- placa basal -->
+          <polygon points="135,148 185,148 190,155 130,155" fill="#1a4060" stroke="#4a90b0" stroke-width="1.2"/>
+          <!-- fibras de cola (6 fibras) -->
+          <g stroke="#6ab0d0" stroke-width="1.3" stroke-linecap="round">
+            <line x1="140" y1="153" x2="115" y2="170"/><line x1="150" y1="155" x2="138" y2="173"/>
+            <line x1="160" y1="155" x2="160" y2="175"/>
+            <line x1="170" y1="155" x2="182" y2="173"/>
+            <line x1="180" y1="153" x2="205" y2="170"/>
+          </g>
+          <!-- conector cabeza-cola -->
+          <rect x="148" y="98" width="24" height="14" rx="2" fill="#1a4060" stroke="#4a90b0" stroke-width="1"/>
+          <!-- cabeza icosaédrica -->
+          <polygon points="160,28 195,48 195,88 160,108 125,88 125,48" fill="url(#fg1)" stroke="#5aa0c0" stroke-width="1.8"/>
+          <!-- detalles internos ADN -->
+          <circle cx="160" cy="68" r="22" fill="rgba(30,80,100,0.4)" stroke="none"/>
+          <path d="M150,58 Q160,68 150,78 M160,55 Q170,68 160,81" stroke="#80c0e0" stroke-width="1.2" fill="none" opacity="0.6"/>
+          <!-- etiqueta fago T4 -->
+          <text x="85" y="65" font-family="DM Mono,monospace" font-size="8.5" fill="#5aa0c0" text-anchor="middle" opacity="0.8">Cabeza</text>
+          <text x="85" y="125" font-family="DM Mono,monospace" font-size="8.5" fill="#5aa0c0" text-anchor="middle" opacity="0.8">Cola</text>
+          <text x="240" y="162" font-family="DM Mono,monospace" font-size="8.5" fill="#5aa0c0" text-anchor="middle" opacity="0.8">Fibras</text>
+          <line x1="100" y1="63" x2="125" y2="60" stroke="#5aa0c0" stroke-width="0.8" opacity="0.5"/>
+          <line x1="100" y1="123" x2="135" y2="130" stroke="#5aa0c0" stroke-width="0.8" opacity="0.5"/>
+          <line x1="215" y1="160" x2="196" y2="166" stroke="#5aa0c0" stroke-width="0.8" opacity="0.5"/>
+          <text x="160" y="178" font-family="DM Mono,monospace" font-size="9" fill="#5aa0c0" text-anchor="middle" opacity="0.8">Bacteriófago T4 · ADN doble cadena · ~200 nm</text>
+        </svg>
+        <div class="agent-img-caption" style="position:static;background:rgba(0,15,30,0.5);color:#80c0e0;padding:0.3rem 0.6rem;font-size:0.6rem">Ilustración científica · Myoviridae · Estructura compleja</div>
+      </div>
+      <div class="agent-body">
+        <div class="agent-header">
+          <span class="agent-badge" style="background:var(--plum-bg);color:var(--plum);border:1px solid var(--plum-l)">Bacteriófago</span>
+          <p class="agent-name">Fago</p>
+        </div>
+        <p class="agent-desc">Virus que infecta exclusivamente bacterias. Estructura compleja: cabeza icosaédrica, cola contráctil y fibras de cola que reconocen receptores bacterianos. Son los virus más abundantes del planeta (~10³¹).</p>
+        <div class="agent-pills">
+          <span class="pill" style="color:var(--plum);border-color:var(--plum-l)">Solo infecta bacterias</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Estructura compleja</span>
+        </div>
+        <div class="agent-key" style="border-color:var(--plum-l)">
+          <strong>Importancia industrial:</strong> Destruyen cultivos de Lactobacillus en plantas de yogurt. También se usan como herramienta biotecnológica (fagoterapia, clonado).
+        </div>
+        <button class="agent-toggle" onclick="toggleExtra(this)">
+          <span>▸</span> Más sobre fagoterapia
+        </button>
+        <div class="agent-extra">
+          <p style="font-size:0.84rem;color:var(--ink2);line-height:1.55">La <strong>fagoterapia</strong> usa bacteriófagos para matar bacterias patógenas resistentes a antibióticos. Es una alternativa terapéutica real: ya se usa en países europeos y hay ensayos en Argentina. Los fagos son altamente específicos —atacan solo la bacteria objetivo— por lo que no dañan la microbiota ni el paciente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIROIDE -->
+    <div class="agent-card">
+      <div class="agent-img-wrap" style="background:#0a140a;display:flex;align-items:center;justify-content:center;flex-direction:column">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:300px">
+          <defs>
+            <radialGradient id="vg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#1a5a1a"/><stop offset="100%" stop-color="#0a2a0a"/></radialGradient>
+          </defs>
+          <!-- ARN circular (estructura característica del viroide) -->
+          <!-- doble hélice circular con apareamiento de bases -->
+          <ellipse cx="160" cy="90" rx="95" ry="48" fill="none" stroke="#2a8a2a" stroke-width="3" opacity="0.8"/>
+          <ellipse cx="160" cy="90" rx="95" ry="48" fill="none" stroke="#6ac06a" stroke-width="1.2" stroke-dasharray="8,4" opacity="0.6"/>
+          <!-- puentes internos (bucles no apareados) -->
+          <path d="M80,70 Q90,50 100,70" fill="none" stroke="#4aaa4a" stroke-width="1.5"/>
+          <path d="M200,115 Q215,135 230,115" fill="none" stroke="#4aaa4a" stroke-width="1.5"/>
+          <path d="M140,46 Q160,30 180,46" fill="none" stroke="#4aaa4a" stroke-width="1.5"/>
+          <path d="M140,134 Q160,150 180,134" fill="none" stroke="#4aaa4a" stroke-width="1.5"/>
+          <!-- barras de apareamiento de bases -->
+          <g stroke="#80d080" stroke-width="1.2" opacity="0.5">
+            <line x1="75" y1="82" x2="75" y2="98"/>
+            <line x1="90" y1="65" x2="90" y2="115"/>
+            <line x1="110" y1="52" x2="110" y2="128"/>
+            <line x1="130" y1="45" x2="130" y2="135"/>
+            <line x1="160" y1="43" x2="160" y2="137"/>
+            <line x1="190" y1="45" x2="190" y2="135"/>
+            <line x1="210" y1="52" x2="210" y2="128"/>
+            <line x1="230" y1="65" x2="230" y2="115"/>
+            <line x1="245" y1="82" x2="245" y2="98"/>
+          </g>
+          <!-- etiqueta central -->
+          <text x="160" y="87" font-family="DM Mono,monospace" font-size="10" fill="#80d080" text-anchor="middle" font-weight="500">ARN circular</text>
+          <text x="160" y="99" font-family="DM Mono,monospace" font-size="9" fill="#50a050" text-anchor="middle">sin cápside</text>
+          <!-- flechas indicando sin proteínas -->
+          <text x="160" y="170" font-family="DM Mono,monospace" font-size="9" fill="#4aaa4a" text-anchor="middle">Viroide · 246–401 nucleótidos · Solo ARN</text>
+          <!-- X indicando ausencia de cápside -->
+          <text x="55" y="35" font-family="DM Sans,sans-serif" font-size="10" fill="#aa4444" text-anchor="middle" opacity="0.8">Sin cápside</text>
+          <text x="55" y="47" font-family="DM Sans,sans-serif" font-size="10" fill="#aa4444" text-anchor="middle" opacity="0.8">Sin proteínas</text>
+          <line x1="30" y1="28" x2="78" y2="54" stroke="#aa4444" stroke-width="1" opacity="0.4"/>
+        </svg>
+        <div class="agent-img-caption" style="position:static;background:rgba(0,20,0,0.5);color:#80d080;padding:0.3rem 0.6rem;font-size:0.6rem">Ilustración científica · Agente subviral · Patógeno de plantas</div>
+      </div>
+      <div class="agent-body">
+        <div class="agent-header">
+          <span class="agent-badge" style="background:var(--sage-bg);color:var(--sage);border:1px solid var(--sage-l)">Subviral</span>
+          <p class="agent-name">Viroide</p>
+        </div>
+        <p class="agent-desc">ARN circular de cadena simple, sin cápside ni proteínas. Es el agente infeccioso más pequeño conocido (240–400 nucleótidos). No codifica proteínas — su ARN actúa directamente sobre el metabolismo de la célula huésped.</p>
+        <div class="agent-pills">
+          <span class="pill" style="color:var(--sage);border-color:var(--sage-l)">Solo ARN circular</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Sin cápside</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Sin proteínas</span>
+        </div>
+        <div class="agent-key" style="border-color:var(--sage-l)">
+          <strong>Afectan principalmente plantas:</strong> Viroide del tubérculo fusiforme de la papa, viroide de la cadang-cadang del cocotero. Generan pérdidas agroindustriales millonarias.
+        </div>
+      </div>
+    </div>
+
+    <!-- VIRIÓN DEFECTIVO / SATÉLITE -->
+    <div class="agent-card">
+      <div class="agent-img-wrap" style="background:#14100a;display:flex;align-items:center;justify-content:center;flex-direction:column">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:300px">
+          <!-- VHB (helper - grande) -->
+          <circle cx="105" cy="90" r="52" fill="#3a2a08" stroke="#c09020" stroke-width="1.5" opacity="0.9"/>
+          <circle cx="105" cy="90" r="32" fill="#2a1a04" stroke="#e0b040" stroke-width="1" opacity="0.7"/>
+          <text x="105" y="87" font-family="DM Mono,monospace" font-size="9" fill="#e0b040" text-anchor="middle">VHB</text>
+          <text x="105" y="99" font-family="DM Mono,monospace" font-size="8" fill="#c09020" text-anchor="middle">helper</text>
+          <!-- spikes VHB -->
+          <g stroke="#c09020" stroke-width="1.5">
+            <line x1="105" y1="38" x2="105" y2="28"/><circle cx="105" cy="26" r="3" fill="#c09020"/>
+            <line x1="142" y1="52" x2="148" y2="44"/><circle cx="150" cy="42" r="3" fill="#c09020"/>
+            <line x1="105" y1="142" x2="105" y2="152"/><circle cx="105" cy="154" r="3" fill="#c09020"/>
+            <line x1="68" y1="52" x2="62" y2="44"/><circle cx="60" cy="42" r="3" fill="#c09020"/>
+          </g>
+          <!-- flecha dependencia -->
+          <path d="M 158,90 L 178,90" stroke="#888060" stroke-width="2" marker-end="url(#arr)" opacity="0.7"/>
+          <text x="168" y="84" font-family="DM Sans,sans-serif" font-size="8" fill="#888060" text-anchor="middle">necesita</text>
+          <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#888060"/></marker></defs>
+          <!-- VHD (satélite - pequeño) -->
+          <circle cx="218" cy="90" r="34" fill="#2a0a1a" stroke="#a03060" stroke-width="1.5"/>
+          <circle cx="218" cy="90" r="18" fill="#1a0410" stroke="#d05080" stroke-width="1" opacity="0.8"/>
+          <!-- ARN delta en interior -->
+          <path d="M210,83 Q216,90 210,97 M220,81 Q226,90 220,99" stroke="#e090a0" stroke-width="1" fill="none" opacity="0.7"/>
+          <text x="218" y="87" font-family="DM Mono,monospace" font-size="9" fill="#e090a0" text-anchor="middle">VHD</text>
+          <text x="218" y="99" font-family="DM Mono,monospace" font-size="8" fill="#a03060" text-anchor="middle">satélite</text>
+          <!-- etiqueta -->
+          <text x="160" y="168" font-family="DM Mono,monospace" font-size="9" fill="#c09060" text-anchor="middle">Virus satélite · VHD depende del VHB · ARN circular</text>
+          <text x="105" y="158" font-family="DM Mono,monospace" font-size="8" fill="#c09020" text-anchor="middle" opacity="0.7">~42 nm</text>
+          <text x="218" y="140" font-family="DM Mono,monospace" font-size="8" fill="#a03060" text-anchor="middle" opacity="0.7">~36 nm</text>
+        </svg>
+        <div class="agent-img-caption" style="position:static;background:rgba(20,10,0,0.5);color:#c09060;padding:0.3rem 0.6rem;font-size:0.6rem">Ilustración científica · Virus satélite · VHD requiere VHB como virus auxiliar</div>
+      </div>
+      <div class="agent-body">
+        <div class="agent-header">
+          <span class="agent-badge" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-l)">Virus satélite</span>
+          <p class="agent-name">Virus defectivo / satélite</p>
+        </div>
+        <p class="agent-desc">Partícula viral que carece de genes esenciales para su propia replicación. Necesita obligatoriamente la co-infección de un virus auxiliar (helper virus) para completar su ciclo. Es "parásito del parásito".</p>
+        <div class="agent-pills">
+          <span class="pill" style="color:var(--amber);border-color:var(--amber-l)">Necesita virus helper</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Genoma incompleto</span>
+        </div>
+        <div class="agent-key" style="border-color:var(--amber-l)">
+          <strong>Ejemplo:</strong> Virus de la hepatitis D solo puede infectar si el paciente ya tiene hepatitis B (su virus auxiliar). El VHD agrava enormemente el cuadro clínico.
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIÓN -->
+    <div class="agent-card">
+      <div class="agent-img-wrap" style="background:#100a0a;display:flex;align-items:center;justify-content:center;flex-direction:column">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:300px">
+          <!-- Proteína normal PrPc (izquierda) - forma correcta (alfa hélices) -->
+          <g transform="translate(60,25)">
+            <text x="40" y="12" font-family="DM Mono,monospace" font-size="8" fill="#80a080" text-anchor="middle">PrPᶜ (normal)</text>
+            <!-- alfa hélices como cilindros -->
+            <rect x="15" y="20" width="18" height="55" rx="9" fill="#2a5a2a" stroke="#4a8a4a" stroke-width="1.2"/>
+            <rect x="45" y="35" width="18" height="50" rx="9" fill="#2a5a2a" stroke="#4a8a4a" stroke-width="1.2"/>
+            <!-- loop conectores -->
+            <path d="M33,35 Q40,30 45,40" fill="none" stroke="#4a8a4a" stroke-width="1.2"/>
+            <path d="M33,75 Q38,80 45,78" fill="none" stroke="#4a8a4a" stroke-width="1.2"/>
+            <!-- N-terminal -->
+            <path d="M24,20 Q20,10 28,5 Q36,0 44,8" fill="none" stroke="#6aaa6a" stroke-width="1.2"/>
+            <text x="40" y="90" font-family="DM Sans,sans-serif" font-size="8" fill="#4a8a4a" text-anchor="middle">α-hélices</text>
+            <text x="40" y="100" font-family="DM Sans,sans-serif" font-size="8" fill="#4a8a4a" text-anchor="middle">soluble</text>
+          </g>
+          <!-- flecha de conversión -->
+          <g transform="translate(140,70)">
+            <path d="M0,18 L36,18" stroke="#aa3030" stroke-width="2.5" stroke-linecap="round"/>
+            <polygon points="36,12 48,18 36,24" fill="#aa3030"/>
+            <text x="24" y="10" font-family="DM Sans,sans-serif" font-size="8" fill="#aa3030" text-anchor="middle">mal</text>
+            <text x="24" y="20" font-family="DM Sans,sans-serif" font-size="8" fill="#aa3030" text-anchor="middle">plegado</text>
+          </g>
+          <!-- Proteína prión PrPsc (derecha) - mal plegada (láminas beta) -->
+          <g transform="translate(195,25)">
+            <text x="42" y="12" font-family="DM Mono,monospace" font-size="8" fill="#c05050" text-anchor="middle">PrPˢᶜ (prión)</text>
+            <!-- láminas beta como flechas planas -->
+            <polygon points="10,22 68,22 68,34 10,34 18,28" fill="#5a1a1a" stroke="#c05050" stroke-width="1.2"/>
+            <polygon points="10,40 68,40 60,46 10,46 10,40" fill="#5a1a1a" stroke="#c05050" stroke-width="1.2"/>
+            <polygon points="10,54 68,54 68,66 10,66 18,60" fill="#5a1a1a" stroke="#c05050" stroke-width="1.2"/>
+            <polygon points="10,72 68,72 60,78 10,78 10,72" fill="#5a1a1a" stroke="#c05050" stroke-width="1.2"/>
+            <!-- loops residuales -->
+            <path d="M60,34 Q70,37 68,40" fill="none" stroke="#c05050" stroke-width="1"/>
+            <path d="M12,46 Q4,50 10,54" fill="none" stroke="#c05050" stroke-width="1"/>
+            <path d="M60,66 Q70,69 68,72" fill="none" stroke="#c05050" stroke-width="1"/>
+            <text x="39" y="90" font-family="DM Sans,sans-serif" font-size="8" fill="#c05050" text-anchor="middle">β-láminas</text>
+            <text x="39" y="100" font-family="DM Sans,sans-serif" font-size="8" fill="#c05050" text-anchor="middle">insoluble</text>
+          </g>
+          <!-- SIN ácido nucleico -->
+          <rect x="110" y="130" width="100" height="22" rx="5" fill="#2a0808" stroke="#aa3030" stroke-width="1"/>
+          <text x="160" y="145" font-family="DM Mono,monospace" font-size="9" fill="#e06060" text-anchor="middle">⊘ Sin ADN · Sin ARN</text>
+          <text x="160" y="172" font-family="DM Mono,monospace" font-size="9" fill="#c05050" text-anchor="middle">Prión · Solo proteína mal plegada · PrP</text>
+        </svg>
+        <div class="agent-img-caption" style="position:static;background:rgba(20,5,5,0.5);color:#c08080;padding:0.3rem 0.6rem;font-size:0.6rem">Ilustración científica · Cambio conformacional PrPᶜ → PrPˢᶜ · Sin ácido nucleico</div>
+      </div>
+      <div class="agent-body">
+        <div class="agent-header">
+          <span class="agent-badge" style="background:#f0eae8;color:#7a2a18;border:1px solid #c06050">Prión</span>
+          <p class="agent-name">Prión</p>
+        </div>
+        <p class="agent-desc">Proteína mal plegada que induce el mismo mal plegamiento en proteínas normales. <strong>No contiene ADN ni ARN.</strong> Es el agente infeccioso más inusual: se propaga únicamente por cambios conformacionales en proteínas.</p>
+        <div class="agent-pills">
+          <span class="pill" style="color:#7a2a18;border-color:#c06050">Sin ácido nucleico</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Solo proteína</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Neurodegenerativo</span>
+        </div>
+        <div class="agent-key" style="border-color:#c06050">
+          <strong>¿Por qué importa?</strong> Causan enfermedades siempre fatales: encefalopatía espongiforme bovina (vaca loca), scrapie en ovejas, Creutzfeldt-Jakob en humanos. Son <em>extremadamente</em> resistentes: sobreviven a esterilización, autoclave convencional, UV y la mayoría de desinfectantes.
+        </div>
+        <button class="agent-toggle" onclick="toggleExtra(this)">
+          <span>▸</span> ¿Cómo se controlan?
+        </button>
+        <div class="agent-extra">
+          <p style="font-size:0.84rem;color:var(--ink2);line-height:1.55">Los priones son los agentes más difíciles de inactivar en industria alimentaria. Requieren protocolos especiales: <strong>autoclave a 134°C × 18 min</strong> (muy superior al estándar), hidróxido de sodio concentrado (1N NaOH) o hipoclorito de sodio al 20.000 ppm. Por eso las normas sanitarias internacionales para carne bovina incluyen controles específicos para EEB.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HÍBRIDO / VIRUS RECOMBINANTE -->
+    <div class="agent-card">
+      <div class="agent-img-wrap" style="background:#0a0a18;display:flex;align-items:center;justify-content:center;flex-direction:column">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:300px">
+          <defs>
+            <radialGradient id="hg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#3a2060"/><stop offset="100%" stop-color="#1a0830"/></radialGradient>
+          </defs>
+          <!-- envoltura HIV -->
+          <circle cx="160" cy="88" r="65" fill="url(#hg1)" stroke="#7050c0" stroke-width="1.5"/>
+          <!-- proteína de matriz p17 -->
+          <circle cx="160" cy="88" r="55" fill="rgba(50,20,90,0.3)" stroke="#5040a0" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <!-- cápside cónica (p24) - característica del HIV -->
+          <polygon points="160,45 188,100 160,118 132,100" fill="#3a1858" stroke="#8060d0" stroke-width="1.5" opacity="0.9"/>
+          <!-- ARN (2 copias) -->
+          <path d="M150,65 Q157,88 150,110" stroke="#d0a0f0" stroke-width="1.3" fill="none"/>
+          <path d="M170,65 Q163,88 170,110" stroke="#d0a0f0" stroke-width="1.3" fill="none"/>
+          <!-- transcriptasa inversa -->
+          <rect x="148" y="80" width="24" height="14" rx="4" fill="#5a30a0" stroke="#a080e0" stroke-width="0.8" opacity="0.8"/>
+          <text x="160" y="90" font-family="DM Mono,monospace" font-size="6.5" fill="#d0b0f0" text-anchor="middle">RT</text>
+          <!-- glicoproteínas (gp120 + gp41) -->
+          <g stroke="#9070d0" stroke-width="1.8" stroke-linecap="round">
+            <line x1="160" y1="23" x2="160" y2="13"/>
+            <rect x="153" y="8" width="14" height="7" rx="2" fill="#7050b0"/>
+            <circle cx="160" cy="8" r="5" fill="none" stroke="#a080d0" stroke-width="1"/>
+            <line x1="198" y1="42" x2="205" y2="34"/>
+            <rect x="202" y="28" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(30,209,31)"/>
+            <line x1="220" y1="80" x2="230" y2="76"/>
+            <rect x="228" y="70" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(10,235,73)"/>
+            <line x1="220" y1="118" x2="230" y2="124"/>
+            <rect x="228" y="122" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(-20,235,125)"/>
+            <line x1="198" y1="140" x2="205" y2="148"/>
+            <rect x="202" y="146" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(-50,209,150)"/>
+            <line x1="122" y1="42" x2="115" y2="34"/>
+            <rect x="102" y="28" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(-30,109,31)"/>
+            <line x1="100" y1="80" x2="90" y2="76"/>
+            <rect x="78" y="70" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(-10,85,73)"/>
+            <line x1="100" y1="118" x2="90" y2="124"/>
+            <rect x="78" y="122" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(20,85,125)"/>
+            <line x1="122" y1="140" x2="115" y2="148"/>
+            <rect x="102" y="146" width="14" height="7" rx="2" fill="#7050b0" transform="rotate(50,109,150)"/>
+          </g>
+          <!-- etiqueta -->
+          <text x="160" y="170" font-family="DM Mono,monospace" font-size="9" fill="#9070d0" text-anchor="middle">HIV · Retrovirus ARN · Cápside cónica · ~120 nm</text>
+          <text x="160" y="90" font-family="DM Mono,monospace" font-size="6" fill="#c0a0f0" text-anchor="middle" opacity="0.5">Cápside p24</text>
+        </svg>
+        <div class="agent-img-caption" style="position:static;background:rgba(5,5,25,0.5);color:#9070d0;padding:0.3rem 0.6rem;font-size:0.6rem">Ilustración científica · HIV-1 · Retrovirus con transcriptasa inversa · Lentivirus</div>
+      </div>
+      <div class="agent-body">
+        <div class="agent-header">
+          <span class="agent-badge" style="background:#eaeaf5;color:#2a2a7a;border:1px solid #6060c0">Recombinante</span>
+          <p class="agent-name">Virus híbrido / recombinante</p>
+        </div>
+        <p class="agent-desc">Virus que surge de la recombinación genética entre dos cepas distintas, generando un nuevo genotipo con propiedades de ambos. Ocurre naturalmente cuando dos virus co-infectan la misma célula, o artificialmente en laboratorio para producir vacunas y vectores.</p>
+        <div class="agent-pills">
+          <span class="pill" style="color:#2a2a7a;border-color:#6060c0">Genoma híbrido</span>
+          <span class="pill" style="color:var(--ink3);border-color:var(--border2)">Natural o artificial</span>
+        </div>
+        <div class="agent-key" style="border-color:#6060c0">
+          <strong>Relevancia:</strong> Las vacunas de vector viral (ej: vacunas COVID basadas en adenovirus) son virus recombinantes construidos en laboratorio. También son la base de la terapia génica: vectores AAV, lentivirus, etc.
+        </div>
+        <button class="agent-toggle" onclick="toggleExtra(this)">
+          <span>▸</span> Shift antigénico en influenza
+        </button>
+        <div class="agent-extra">
+          <p style="font-size:0.84rem;color:var(--ink2);line-height:1.55">El <strong>shift antigénico</strong> ocurre cuando dos cepas de influenza co-infectan una célula y sus segmentos de ARN se recombinan al azar. Genera nuevas cepas con proteínas de superficie completamente nuevas — frente a las cuales la población no tiene inmunidad previa. Es el mecanismo detrás de las pandemias de gripe (1918, 1957, 1968, 2009).</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SECCIÓN 2 — ESTRUCTURA
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="sec-estructura">
+  <p class="section-eyebrow">Morfología</p>
+  <h2 class="section-title">Partes del virus</h2>
+  <p class="section-intro">Tocá cada parte del diagrama para ver su función.</p>
+
+  <div class="virus-diagram-wrap">
+    <div class="virus-svg-container">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="envG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#b8a090" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#8a6858" stop-opacity="0.15"/>
+          </radialGradient>
+          <radialGradient id="capsG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#4a7090" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#2a5070" stop-opacity="0.5"/>
+          </radialGradient>
+          <radialGradient id="nucG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c07020"/>
+            <stop offset="100%" stop-color="#905010"/>
+          </radialGradient>
+        </defs>
+
+        <!-- ENVOLTURA -->
+        <g class="v-part" id="p-envoltura" onclick="selectPart('envoltura')">
+          <circle cx="150" cy="150" r="128" fill="url(#envG)" stroke="#9b6a50" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <g stroke="#9b6a50" stroke-width="1.8" stroke-linecap="round">
+            <line x1="150" y1="22" x2="150" y2="10"/>  <circle cx="150" cy="8"   r="4.5" fill="#9b3a1f"/>
+            <line x1="208" y1="44" x2="218" y2="34"/>  <circle cx="221" cy="31"  r="4.5" fill="#9b3a1f"/>
+            <line x1="250" y1="92" x2="260" y2="84"/>  <circle cx="263" cy="81"  r="4.5" fill="#9b3a1f"/>
+            <line x1="270" y1="150" x2="282" y2="150"/><circle cx="285" cy="150" r="4.5" fill="#9b3a1f"/>
+            <line x1="250" y1="208" x2="260" y2="218"/><circle cx="263" cy="221" r="4.5" fill="#9b3a1f"/>
+            <line x1="208" y1="256" x2="216" y2="268"/><circle cx="218" cy="271" r="4.5" fill="#9b3a1f"/>
+            <line x1="150" y1="270" x2="150" y2="282"/><circle cx="150" cy="285" r="4.5" fill="#9b3a1f"/>
+            <line x1="92"  y1="256" x2="84"  y2="268"/><circle cx="82"  cy="271" r="4.5" fill="#9b3a1f"/>
+            <line x1="50"  y1="208" x2="40"  y2="218"/><circle cx="37"  cy="221" r="4.5" fill="#9b3a1f"/>
+            <line x1="30"  y1="150" x2="18"  y2="150"/><circle cx="15"  cy="150" r="4.5" fill="#9b3a1f"/>
+            <line x1="50"  y1="92"  x2="40"  y2="84"/> <circle cx="37"  cy="81"  r="4.5" fill="#9b3a1f"/>
+            <line x1="92"  y1="44"  x2="84"  y2="32"/> <circle cx="82"  cy="29"  r="4.5" fill="#9b3a1f"/>
+          </g>
+        </g>
+
+        <!-- CÁPSIDE -->
+        <g class="v-part" id="p-capside" onclick="selectPart('capside')">
+          <circle cx="150" cy="150" r="88" fill="url(#capsG)" stroke="#3a7090" stroke-width="1.8"/>
+          <g fill="none" stroke="#5a90b0" stroke-width="0.8" opacity="0.45">
+            <polygon points="150,76 163,84 163,100 150,108 137,100 137,84"/>
+            <polygon points="150,192 163,200 163,216 150,224 137,216 137,200"/>
+            <polygon points="88,113 101,121 101,137 88,145 75,137 75,121"/>
+            <polygon points="212,113 225,121 225,137 212,145 199,137 199,121"/>
+          </g>
+        </g>
+
+        <!-- GENOMA -->
+        <g class="v-part" id="p-genoma" onclick="selectPart('genoma')">
+          <circle cx="150" cy="150" r="52" fill="url(#nucG)" stroke="#c07020" stroke-width="1.8"/>
+          <g stroke="#f5d090" stroke-width="1.2" fill="none" opacity="0.65">
+            <path d="M133,132 Q143,152 133,172"/>
+            <path d="M167,132 Q157,152 167,172"/>
+            <line x1="135" y1="138" x2="165" y2="142"/>
+            <line x1="133" y1="152" x2="167" y2="156"/>
+            <line x1="135" y1="164" x2="165" y2="168"/>
+          </g>
+          <text x="150" y="156" font-family="'DM Mono',monospace" font-size="8.5" fill="#f5e0c0" text-anchor="middle" font-weight="500">ARN/ADN</text>
+        </g>
+
+        <!-- Label envoltura -->
+        <text x="150" y="6" font-family="'DM Sans',sans-serif" font-size="8" fill="#9b6a50" text-anchor="middle">Glicoproteínas</text>
+      </svg>
+    </div>
+
+    <div style="width:100%;max-width:320px">
+      <div class="part-card" id="part-detail-card">
+        <p class="part-hint" id="part-hint">↑ Tocá una parte del diagrama</p>
+        <div id="part-detail" style="display:none">
+          <p class="label-tag" id="pd-label"></p>
+          <p class="part-name" id="pd-name"></p>
+          <p class="part-sub"  id="pd-sub"></p>
+          <p class="part-desc" id="pd-desc"></p>
+        </div>
+      </div>
+
+      <p class="label-tag" style="margin:1.2rem 0 0.6rem">Por tipo de genoma</p>
+
+      <div class="card" style="border-left:3px solid var(--rust-l)">
+        <p style="font-family:var(--mono);font-size:0.65rem;color:var(--rust);letter-spacing:0.06em;margin-bottom:0.2rem">VIRUS ARN</p>
+        <p style="font-size:0.84rem;color:var(--ink2)">Alta tasa de mutación. <span style="color:var(--ink)">Influenza, HIV, SARS-CoV-2, Ébola, Norovirus.</span></p>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--teal-l);margin-top:0.6rem">
+        <p style="font-family:var(--mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.06em;margin-bottom:0.2rem">VIRUS ADN</p>
+        <p style="font-size:0.84rem;color:var(--ink2)">Más estables. <span style="color:var(--ink)">Herpesvirus, Adenovirus, Papilomavirus, Bacteriófagos.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SECCIÓN 3 — CICLOS
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="sec-ciclos">
+  <p class="section-eyebrow">Replicación viral</p>
+  <h2 class="section-title">Ciclos virales</h2>
+  <p class="section-intro">Cambiá entre los dos ciclos y seguí los pasos animados.</p>
+
+  <div class="cycle-toggle">
+    <button class="cycle-btn active-litico" id="btn-lit" onclick="showCycle('litico')">Ciclo Lítico</button>
+    <button class="cycle-btn" id="btn-lis" onclick="showCycle('lisogenico')">Ciclo Lisogénico</button>
+  </div>
+
+  <div id="cy-litico" class="cycle-steps litico"></div>
+  <div id="cy-lisogenico" class="cycle-steps lisogenico" style="display:none"></div>
+
+  <div class="key-fact">
+    <strong>Riesgo industrial:</strong> Un fermentador de yogurt puede contener bacterias con profagos latentes. Si el proceso las estresa (calor, pH, agotamiento de nutrientes), el fago se activa y destruye el cultivo completo en horas.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SECCIÓN 4 — COMPARACIÓN
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="sec-comparacion">
+  <p class="section-eyebrow">Análisis diferencial</p>
+  <h2 class="section-title">Virus vs. Bacteria</h2>
+  <p class="section-intro">Las diferencias que importan en la industria de procesos.</p>
+
+  <div class="compare-entities">
+    <div class="entity-card" style="border-color:var(--rust)">
+      <span class="entity-icon">🔴</span>
+      <p class="entity-name" style="color:var(--rust)">Virus</p>
+      <p class="entity-size">20 – 300 nm</p>
+    </div>
+    <div class="entity-card" style="border-color:var(--teal)">
+      <span class="entity-icon">🦠</span>
+      <p class="entity-name" style="color:var(--teal)">Bacteria</p>
+      <p class="entity-size">500 – 5.000 nm</p>
+    </div>
+  </div>
+
+  <div class="size-section card">
+    <p class="size-label">Escala comparativa de tamaño</p>
+    <div class="size-row">
+      <span class="size-name" style="color:var(--rust)">Virus</span>
+      <div class="size-track"><div class="size-fill" id="bar-v" style="background:var(--rust-l)"></div></div>
+      <span class="size-val">~100 nm</span>
+    </div>
+    <div class="size-row">
+      <span class="size-name" style="color:var(--teal)">Bacteria</span>
+      <div class="size-track"><div class="size-fill" id="bar-b" style="background:var(--teal-l)"></div></div>
+      <span class="size-val">~2.000 nm</span>
+    </div>
+    <div class="size-row">
+      <span class="size-name" style="color:var(--amber)">Célula</span>
+      <div class="size-track"><div class="size-fill" id="bar-c" style="background:var(--amber-l)"></div></div>
+      <span class="size-val">~20.000 nm</span>
+    </div>
+  </div>
+
+  <div class="compare-table">
+    <div class="cmp-row">
+      <div class="cmp-trait">Tipo de entidad</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell"><span class="bad">Acelular</span><br><span style="font-size:0.77rem">Sin células</span></div>
+        <div class="cmp-cell"><span class="good">Procariota</span><br><span style="font-size:0.77rem">Célula sin núcleo</span></div>
+      </div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-trait">Material genético</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell"><span class="hi">ADN o ARN</span><br><span style="font-size:0.77rem">Solo uno de los dos</span></div>
+        <div class="cmp-cell"><span class="hi">ADN</span><br><span style="font-size:0.77rem">Siempre doble cadena</span></div>
+      </div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-trait">Metabolismo propio</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell"><span class="bad">Ninguno</span><br><span style="font-size:0.77rem">Depende del huésped</span></div>
+        <div class="cmp-cell"><span class="good">Completo</span><br><span style="font-size:0.77rem">Autónomo</span></div>
+      </div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-trait">Reproducción</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell"><span class="bad">Solo en huésped</span><br><span style="font-size:0.77rem">Secuestra la célula</span></div>
+        <div class="cmp-cell"><span class="good">Fisión binaria</span><br><span style="font-size:0.77rem">Autónoma</span></div>
+      </div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-trait">Antibióticos</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell"><span class="bad">No funcionan</span><br><span style="font-size:0.77rem">Sin metabolismo que atacar</span></div>
+        <div class="cmp-cell"><span class="good">Eficaces</span><br><span style="font-size:0.77rem">Según especie</span></div>
+      </div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-trait">Filtración 0.2 µm</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell"><span class="bad">No retiene virus</span><br><span style="font-size:0.77rem">Demasiado pequeños</span></div>
+        <div class="cmp-cell"><span class="good">Retiene bacterias</span><br><span style="font-size:0.77rem">Método estándar</span></div>
+      </div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-trait">Control en planta</div>
+      <div class="cmp-cells">
+        <div class="cmp-cell" style="font-size:0.81rem"><span class="hi">UV · Calor · Oxidantes</span><br><span style="font-size:0.77rem">Combinación barreras</span></div>
+        <div class="cmp-cell" style="font-size:0.81rem"><span class="hi">Calor · pH · ATB</span><br><span style="font-size:0.77rem">+ Buenas prácticas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SECCIÓN 5 — QUIZ
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="sec-quiz">
+  <p class="section-eyebrow">Autoevaluación</p>
+  <h2 class="section-title">Quiz de virología</h2>
+  <p class="section-intro">8 preguntas con feedback inmediato y explicación.</p>
+
+  <div id="quiz-main">
+    <div class="quiz-progress" id="quiz-prog"></div>
+    <p class="quiz-count" id="quiz-count"></p>
+    <div id="quiz-ctx" class="quiz-ctx"></div>
+    <p class="quiz-q" id="quiz-q"></p>
+    <div class="quiz-opts" id="quiz-opts"></div>
+    <div class="quiz-fb" id="quiz-fb"></div>
+    <button class="btn-next" id="btn-next" onclick="nextQ()">Siguiente →</button>
+  </div>
+
+  <div class="quiz-result" id="quiz-result">
+    <p class="result-score" id="res-score"></p>
+    <p class="result-label">Respuestas correctas</p>
+    <p class="result-msg" id="res-msg"></p>
+    <button class="btn-restart" onclick="initQuiz()">Intentar de nuevo</button>
+  </div>
+</section>
+
+<footer class="site-footer">
+  ISFA · Procesos Microbiológicos · 6to Año · Prof. Agustina Rodríguez · 2026
+</footer>
+
+<script>
+// ─── NAV ────────────────────────────────────────────────────────────
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('sec-' + tab.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (tab.dataset.tab === 'comparacion') setTimeout(animateBars, 200);
+    if (tab.dataset.tab === 'ciclos') triggerSteps('litico');
+  });
+});
+
+// ─── AGENTES — TOGGLE ────────────────────────────────────────────────
+function toggleExtra(btn) {
+  const extra = btn.nextElementSibling;
+  const isOpen = extra.classList.toggle('open');
+  btn.querySelector('span').textContent = isOpen ? '▾' : '▸';
+}
+
+// ─── ESTRUCTURA — DIAGRAMA ────────────────────────────────────────────
+const partInfo = {
+  envoltura: {
+    label: 'Capa externa',
+    name: 'Envoltura lipídica',
+    sub: 'Presente en: HIV · Influenza · Coronavirus · Herpesvirus',
+    desc: 'Membrana de lípidos derivada de la célula huésped al momento de la salida viral. Las glicoproteínas que sobresalen (spikes) permiten reconocer receptores celulares. Los virus con envoltura son más sensibles al jabón, alcohol y calor — el jabón disuelve la membrana.',
+    color: 'var(--rust)'
+  },
+  capside: {
+    label: 'Cubierta proteica',
+    name: 'Cápside',
+    sub: 'Formada por: capsómeros (subunidades proteicas)',
+    desc: 'Cubierta que protege el genoma. Puede ser icosaédrica (geométrica), helicoidal (tubular) o compleja. Los virus sin envoltura solo tienen cápside — son más resistentes a desinfectantes porque la proteína es más estable que los lípidos.',
+    color: 'var(--slate)'
+  },
+  genoma: {
+    label: 'Material genético',
+    name: 'Ácido nucleico',
+    sub: 'ADN o ARN — nunca los dos a la vez',
+    desc: 'Contiene toda la información para fabricar nuevos virus. Un virus solo puede tener UNO de los dos ácidos nucleicos. Los virus ARN mutan mucho más rápido (la ARN polimerasa comete más errores), lo que explica la variabilidad de la influenza cada temporada.',
+    color: 'var(--amber)'
+  }
+};
+
+function selectPart(id) {
+  document.querySelectorAll('.v-part').forEach(p => p.style.opacity = '1');
+  document.getElementById('p-' + id).style.filter = 'drop-shadow(0 0 6px ' + partInfo[id].color + ')';
+
+  const data = partInfo[id];
+  document.getElementById('part-hint').style.display = 'none';
+  document.getElementById('part-detail').style.display = 'block';
+  document.getElementById('pd-label').textContent = data.label;
+  document.getElementById('pd-name').textContent = data.name;
+  document.getElementById('pd-name').style.color = data.color;
+  document.getElementById('pd-sub').textContent = data.sub;
+  document.getElementById('pd-desc').textContent = data.desc;
+
+  const card = document.getElementById('part-detail-card');
+  card.style.borderColor = data.color;
+}
+
+// ─── CICLOS ─────────────────────────────────────────────────────────
+const cicloData = {
+  litico: [
+    { n:'1', title:'Adsorción', body:'El virus se une a receptores específicos de la superficie celular. Esta especificidad determina qué células puede infectar.', tag:'Reconocimiento receptor–ligando' },
+    { n:'2', title:'Penetración', body:'Inyecta su material genético dentro (bacteriófagos) o entra completo por endocitosis (virus animales).', tag:null },
+    { n:'3', title:'Replicación', body:'Usa los ribosomas, enzimas y ATP de la célula para fabricar copias de su genoma y proteínas virales. La célula trabaja para el virus.', tag:'La célula es secuestrada' },
+    { n:'4', title:'Ensamblaje', body:'Las piezas producidas se ensamblan en nuevas partículas virales dentro de la célula huésped.', tag:null },
+    { n:'5', title:'Lisis y liberación', body:'La célula revienta y libera 100–1.000 nuevos virus. La célula muere. Cada virus puede infectar una célula nueva.', tag:'Burst size: 100–1.000 virus/célula' },
+  ],
+  lisogenico: [
+    { n:'1', title:'Adsorción y penetración', body:'Igual que en el ciclo lítico: el virus se une e introduce su material genético en la bacteria.', tag:null },
+    { n:'2', title:'Integración → Profago', body:'El ADN viral se integra al cromosoma bacteriano. En este estado se llama profago. La célula NO muere.', tag:'El virus "duerme"' },
+    { n:'3', title:'Replicación silenciosa', body:'La bacteria crece y se divide normalmente. En cada división replica el profago junto con su cromosoma. Puede durar generaciones.', tag:'Bacteria aparentemente sana' },
+    { n:'4', title:'Activación por estrés', body:'UV, calor, pH extremo o falta de nutrientes activan el profago. Se escinde del cromosoma y entra en ciclo lítico.', tag:'Disparadores: UV · calor · pH · hambre' },
+    { n:'5', title:'→ Ciclo lítico', body:'El profago activado sigue el ciclo lítico completo. La bacteria muere y libera cientos de fagos.', tag:'⚠ Sin aviso previo en industria' },
+  ]
+};
+
+function buildCycle(type) {
+  const container = document.getElementById('cy-' + type);
+  container.innerHTML = '';
+  cicloData[type].forEach((paso, i) => {
+    const isLast = i === cicloData[type].length - 1;
+    const div = document.createElement('div');
+    div.className = 'step';
+    div.innerHTML = `
+      <div class="step-line">
+        <div class="step-dot">${paso.n}</div>
+        ${!isLast ? '<div class="step-connector"></div>' : ''}
+      </div>
+      <div class="step-content">
+        <p class="step-title">${paso.title}</p>
+        <p class="step-body">${paso.body}</p>
+        ${paso.tag ? `<span class="step-tag" style="color:var(--${type==='litico'?'rust':'teal'});border-color:var(--${type==='litico'?'rust':'teal'})">${paso.tag}</span>` : ''}
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function showCycle(type) {
+  document.getElementById('cy-litico').style.display   = type === 'litico'    ? 'flex' : 'none';
+  document.getElementById('cy-lisogenico').style.display = type === 'lisogenico' ? 'flex' : 'none';
+  if (type === 'litico') { document.getElementById('cy-litico').style.flexDirection = 'column'; }
+  else                   { document.getElementById('cy-lisogenico').style.flexDirection = 'column'; }
+
+  document.getElementById('btn-lit').className = 'cycle-btn' + (type === 'litico' ? ' active-litico' : '');
+  document.getElementById('btn-lis').className = 'cycle-btn' + (type === 'lisogenico' ? ' active-liso' : '');
+  triggerSteps(type);
+}
+
+function triggerSteps(type) {
+  const steps = document.querySelectorAll('#cy-' + type + ' .step');
+  steps.forEach(s => s.classList.remove('visible'));
+  steps.forEach((s, i) => setTimeout(() => s.classList.add('visible'), 80 + i * 130));
+}
+
+buildCycle('litico');
+buildCycle('lisogenico');
+setTimeout(() => triggerSteps('litico'), 500);
+
+// ─── COMPARACIÓN — BARRAS ─────────────────────────────────────────────
+function animateBars() {
+  document.getElementById('bar-v').style.width = '5%';
+  document.getElementById('bar-b').style.width = '50%';
+  document.getElementById('bar-c').style.width = '100%';
+}
+
+// ─── QUIZ ─────────────────────────────────────────────────────────────
+const questions = [
+  {
+    q: '¿Cuál de los siguientes NO es un virus clásico sino un agente subviral?',
+    opts: ['Bacteriófago T4', 'Virus de la influenza', 'Viroide de la papa', 'SARS-CoV-2'],
+    correct: 2,
+    feedback: 'El viroide es un agente subviral: solo consiste en ARN circular sin cápside ni proteínas. Los virus clásicos siempre tienen material genético <em>y</em> cápside proteica. Los viroides afectan principalmente plantas y generan pérdidas agroindustriales importantes.'
+  },
+  {
+    q: '¿Por qué los priones son los agentes infecciosos más difíciles de eliminar en una planta industrial?',
+    opts: [
+      'Porque son muy grandes y no los retienen los filtros',
+      'Porque no contienen ácidos nucleicos y resisten esterilización, UV y la mayoría de desinfectantes',
+      'Porque se replican muy rápido dentro de la célula huésped',
+      'Porque tienen envoltura lipídica que los protege del calor'
+    ],
+    correct: 1,
+    feedback: 'Los priones son solo proteínas mal plegadas — no tienen ADN ni ARN. Sin material genético, los métodos que dañan el genoma (UV, calor moderado) no los afectan. Requieren protocolos especiales: autoclave a 134°C × 18 min o NaOH 1N concentrado. Son la razón detrás de los controles sanitarios estrictos en carne bovina.'
+  },
+  {
+    context: 'Un técnico detecta que el cultivo de Lactobacillus de su fermentador de yogurt colapsó en 2 horas luego de un cambio de temperatura accidental.',
+    q: '¿Qué tipo de agente y qué mecanismo es más probable que explique este colapso?',
+    opts: [
+      'Un prión que se activó con el cambio de temperatura',
+      'Un viroide que atacó la maquinaria ribosomal bacteriana',
+      'Un bacteriófago lisogénico que se activó por estrés térmico y entró en ciclo lítico',
+      'Un virus satélite que perdió su virus auxiliar'
+    ],
+    correct: 2,
+    feedback: 'El cambio de temperatura es un estresor clásico que activa profagos latentes. El bacteriófago integrado como profago se escinde, entra en ciclo lítico y destruye el cultivo en minutos. Este es uno de los mayores riesgos en fermentaciones industriales de lácteos.'
+  },
+  {
+    q: '¿Qué diferencia fundamental tiene un virus satélite respecto a un virus completo?',
+    opts: [
+      'El virus satélite infecta solo bacterias, el virus completo solo células humanas',
+      'El virus satélite carece de genes esenciales y necesita un virus auxiliar para replicarse',
+      'El virus satélite no tiene envoltura lipídica mientras que el virus completo siempre la tiene',
+      'El virus satélite contiene ARN y el virus completo siempre contiene ADN'
+    ],
+    correct: 1,
+    feedback: 'Un virus satélite (o virus defectivo) no puede replicarse solo porque le faltan genes esenciales. Necesita co-infectar la misma célula junto con un virus auxiliar (helper). El virus de la hepatitis D solo puede infectar a personas que ya tienen hepatitis B, su virus auxiliar obligatorio.'
+  },
+  {
+    q: '¿Por qué los virus de ARN mutan más rápido que los de ADN?',
+    opts: [
+      'Porque el ARN es más corto y se copia más rápido',
+      'Porque la ARN polimerasa comete más errores de copia y no tiene mecanismos de corrección eficientes',
+      'Porque el ARN no necesita desempaquetarse de la cápside antes de replicarse',
+      'Porque los virus de ARN usan los ribosomas del huésped directamente'
+    ],
+    correct: 1,
+    feedback: 'La ARN polimerasa carece de actividad de "corrección de pruebas" (proofreading) eficiente, por lo que comete ~1 error cada 10.000 nucleótidos copiados. Las ADN polimerasas tienen mecanismos de corrección mucho más eficaces. Por eso la influenza (ARN) cambia cada año y necesitamos vacuna nueva, mientras que el sarampión (también ARN pero con polimerasa más fiel) lleva décadas con la misma vacuna.'
+  },
+  {
+    q: 'Para inactivar un virus con envoltura lipídica en una superficie de planta, ¿cuál es el método más eficiente y económico?',
+    opts: [
+      'Autoclave a 134°C por 18 minutos',
+      'Filtración con membrana de 0.2 µm',
+      'Alcohol al 70% o hipoclorito en concentración adecuada',
+      'Antibiótico de amplio espectro diluido en agua'
+    ],
+    correct: 2,
+    feedback: 'Los virus con envoltura son los más fáciles de inactivar porque la envoltura lipídica se destruye fácilmente con solventes (alcohol) u oxidantes (hipoclorito). El autoclave es excesivo para superficies. La filtración no retiene virus. Los antibióticos no actúan sobre ningún virus.'
+  },
+  {
+    context: 'En biotecnología se desarrolló una vacuna contra el COVID-19 usando un adenovirus humano modificado que lleva el gen de la proteína Spike del SARS-CoV-2.',
+    q: '¿Cómo se clasifica este agente utilizado como vacuna?',
+    opts: [
+      'Viroide recombinante, porque no tiene cápside propia',
+      'Virus recombinante o vector viral, porque se modificó genéticamente para llevar material genético de otro virus',
+      'Prión modificado, porque cambia la estructura proteica de las células',
+      'Virus satélite, porque necesita el SARS-CoV-2 como virus auxiliar'
+    ],
+    correct: 1,
+    feedback: 'Las vacunas de vector viral son virus recombinantes: se toma un adenovirus (el vector), se elimina parte de su genoma propio y se inserta el gen de interés (la proteína Spike). El adenovirus lleva el material genético a las células, que producen la proteína Spike y generan respuesta inmune. No es virus satélite porque no necesita al SARS-CoV-2 para replicarse.'
+  },
+  {
+    q: 'En la industria de procesos, ¿cuál de estos agentes representa el mayor riesgo para un fermentador de yogurt?',
+    opts: [
+      'Un prión, porque resiste todos los métodos de esterilización',
+      'Un bacteriófago lítico o lisogénico activado, porque destruye directamente el cultivo bacteriano',
+      'Un viroide, porque afecta el ARN ribosomal del Lactobacillus',
+      'Un virus satélite, porque compite con el cultivo por nutrientes'
+    ],
+    correct: 1,
+    feedback: 'Los bacteriófagos son el principal riesgo en fermentaciones. Un fago lítico puede destruir un cultivo de Lactobacillus en minutos; un fago lisogénico latente puede activarse si el proceso genera estrés. Los priones afectan mamíferos, no bacterias. Los viroides afectan plantas. Este es uno de los problemas más costosos en la industria láctea argentina.'
+  }
+];
+
+let qIdx = 0, score = 0, answered = false;
+const results = new Array(questions.length).fill(null);
+
+function initQuiz() {
+  qIdx = 0; score = 0; answered = false;
+  results.fill(null);
+  document.getElementById('quiz-main').style.display = 'block';
+  document.getElementById('quiz-result').classList.remove('show');
+  renderQ();
+}
+
+function renderQ() {
+  answered = false;
+  const q = questions[qIdx];
+
+  // Progress
+  const prog = document.getElementById('quiz-prog');
+  prog.innerHTML = '';
+  for (let i = 0; i < questions.length; i++) {
+    const d = document.createElement('div');
+    d.className = 'prog-dot' + (i < qIdx ? (results[i] ? ' done' : ' wrong') : i === qIdx ? ' current' : '');
+    prog.appendChild(d);
+  }
+
+  document.getElementById('quiz-count').textContent = `Pregunta ${qIdx + 1} de ${questions.length}`;
+
+  const ctx = document.getElementById('quiz-ctx');
+  if (q.context) { ctx.style.display = 'block'; ctx.textContent = q.context; }
+  else           { ctx.style.display = 'none'; }
+
+  document.getElementById('quiz-q').textContent = q.q;
+
+  const optsEl = document.getElementById('quiz-opts');
+  optsEl.innerHTML = '';
+  ['A','B','C','D'].forEach((l, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-opt';
+    div.innerHTML = `<span class="opt-letter">${l}</span><span>${q.opts[i]}</span>`;
+    div.onclick = () => answer(i, div);
+    optsEl.appendChild(div);
+  });
+
+  document.getElementById('quiz-fb').className = 'quiz-fb';
+  document.getElementById('quiz-fb').innerHTML = '';
+  document.getElementById('btn-next').className = 'btn-next';
+}
+
+function answer(idx, el) {
+  if (answered) return;
+  answered = true;
+  const q = questions[qIdx];
+  const ok = idx === q.correct;
+  results[qIdx] = ok;
+  if (ok) score++;
+
+  document.querySelectorAll('.quiz-opt').forEach((o, i) => {
+    o.classList.add('disabled');
+    if (i === q.correct) o.classList.add('reveal');
+  });
+  el.classList.add(ok ? 'correct' : 'wrong-sel');
+
+  const fb = document.getElementById('quiz-fb');
+  fb.innerHTML = (ok ? '✓ Correcto. ' : '✗ No es esa. ') + q.feedback;
+  fb.className = 'quiz-fb show' + (ok ? '' : ' wrong-fb');
+
+  document.getElementById('btn-next').className = 'btn-next show';
+}
+
+function nextQ() {
+  if (qIdx < questions.length - 1) {
+    qIdx++;
+    renderQ();
+    window.scrollTo({ top: document.querySelector('.nav-tabs').offsetTop, behavior: 'smooth' });
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-main').style.display = 'none';
+  const res = document.getElementById('quiz-result');
+  res.classList.add('show');
+  const pct = Math.round(score / questions.length * 100);
+  const scoreEl = document.getElementById('res-score');
+  scoreEl.textContent = `${score}/${questions.length}`;
+  scoreEl.style.color = pct >= 75 ? 'var(--teal)' : pct >= 50 ? 'var(--amber)' : 'var(--rust)';
+  const msgs = [
+    [87, 'Excelente manejo del tema — dominás tanto los conceptos teóricos como la aplicación industrial.'],
+    [62, 'Buen avance. Repasá los agentes subvirales y los ciclos virales.'],
+    [37, 'Vas bien encaminado/a. Te recomendamos repasar la sección Agentes y Ciclos antes de reintentar.'],
+    [0,  '¡No hay problema! Explorá todas las secciones del material y volvé a intentarlo. 💪']
+  ];
+  document.getElementById('res-msg').textContent = msgs.find(([t]) => pct > t)[1];
+}
+
+initQuiz();
+</script>
+</body>
+</html>
